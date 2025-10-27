@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>YouTube Premium UI • LUX YT PRO 1.1</title>
+
+<style>
+
+:root {
+
+  --yt-dark: #0a0a0a;
+
+  --yt-panel: #181818;
+
+  --yt-red: #ff0000;
+
+  --yt-gold: #ffb300;
+
+  --yt-text: #fff;
+
+}
+
+body {
+
+  margin: 0;
+
+  font-family: "Roboto","Segoe UI",sans-serif;
+
+  background: radial-gradient(circle at top,#1a1a1a,#000);
+
+  color: var(--yt-text);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+}
+
+/* Верхняя панель */
+
+header {
+
+  position: fixed;
+
+  top: 0; left: 0; right: 0;
+
+  height: 58px;
+
+  background: var(--yt-panel);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  box-shadow: 0 2px 10px rgba(0,0,0,.6);
+
+  z-index: 10;
+
+}
+
+.logo {
+
+  display: flex;
+
+  align-items: center;
+
+  font-size: 1.4em;
+
+  font-weight: 700;
+
+}
+
+.logo span {
+
+  color: var(--yt-red);
+
+  margin-right: 8px;
+
+}
+
+#fpsCounter {
+
+  background: rgba(255,255,255,.05);
+
+  border-radius: 8px;
+
+  padding: 4px 10px;
+
+  font-size: .85em;
+
+  color: #0f0;
+
+  backdrop-filter: blur(4px);
+
+}
+
+/* Контент */
+
+main {
+
+  text-align: center;
+
+  margin-top: 120px;
+
+  padding: 20px;
+
+}
+
+h1 {
+
+  font-size: 2.3em;
+
+  margin-bottom: 8px;
+
+  background: linear-gradient(90deg,#fff,#ffd900,#ffae00);
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+}
+
+p {
+
+  color: #bbb;
+
+  font-size: 1.1em;
+
+  margin-bottom: 35px;
+
+}
+
+/* Кнопки */
+
+.btn {
+
+  border: none;
+
+  border-radius: 30px;
+
+  color: #fff;
+
+  font-weight: 600;
+
+  font-size: 1.1em;
+
+  padding: 14px 36px;
+
+  cursor: pointer;
+
+  box-shadow: 0 4px 15px rgba(255,179,0,.4);
+
+  background: linear-gradient(90deg,#ffb300,#ff7e00);
+
+  transition: all .25s ease;
+
+}
+
+.btn:hover {
+
+  box-shadow: 0 6px 25px rgba(255,179,0,.6);
+
+  transform: translateY(-2px);
+
+}
+
+.btn:active {
+
+  transform: scale(.96);
+
+}
+
+/* Прогресс */
+
+.progress-container {
+
+  width: 280px;
+
+  height: 12px;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,.1);
+
+  margin: 25px auto 0;
+
+  overflow: hidden;
+
+  display: none;
+
+}
+
+.progress-bar {
+
+  height: 100%;
+
+  width: 0%;
+
+  background: linear-gradient(90deg,#ffb300,#ff7e00);
+
+  transition: width .3s ease;
+
+}
+
+/* Кнопка подписки */
+
+.subscribe-btn {
+
+  margin-top: 30px;
+
+  background: var(--yt-red);
+
+  box-shadow: 0 4px 15px rgba(255,0,0,.4);
+
+}
+
+.subscribe-btn:hover {
+
+  background: #ff2a2a;
+
+  box-shadow: 0 6px 25px rgba(255,0,0,.6);
+
+}
+
+/* Эмоджи */
+
+.emoji-btn {
+
+  margin-top: 25px;
+
+  padding: 10px 22px;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,.08);
+
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,.1);
+
+  cursor: pointer;
+
+  transition: .25s;
+
+}
+
+.emoji-btn:hover {
+
+  background: rgba(255,255,255,.15);
+
+}
+
+#emojiInput {
+
+  display: none;
+
+  margin-top: 10px;
+
+  padding: 10px 14px;
+
+  font-size: 1.1em;
+
+  border-radius: 8px;
+
+  border: none;
+
+  outline: none;
+
+  background: rgba(255,255,255,.1);
+
+  color: #fff;
+
+}
+
+/* Футер */
+
+footer {
+
+  margin-top: 60px;
+
+  color: #888;
+
+  font-size: .9em;
+
+}
+
+footer a {
+
+  color: var(--yt-gold);
+
+  text-decoration: none;
+
+  margin: 0 10px;
+
+}
+
+footer a:hover {
+
+  color: #fff;
+
+}
+
+/* Адаптация */
+
+@media (max-width:700px) {
+
+  h1{font-size:1.8em;}
+
+  p{font-size:1em;}
+
+  .btn{font-size:1em;padding:12px 26px;}
+
+  header{height:54px;padding:0 10px;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+  <div class="logo"><span>▶</span>YouTube Premium</div>
+
+  <div id="fpsCounter">FPS: 0</div>
+
+</header>
+
+<main>
+
+  <h1>✨ Обновление YouTube Premium UI</h1>
+
+  <p>Почувствуйте гладкость, золотой стиль и скорость нового интерфейса 🎥</p>
+
+  <button class="btn" id="updateBtn">⚡ Установить обновление</button>
+
+  <div class="progress-container" id="progressContainer">
+
+    <div class="progress-bar" id="progressBar"></div>
+
+  </div>
+
+  <button class="btn subscribe-btn" id="subscribeBtn">❤️ Подписаться</button>
+
+  <button class="emoji-btn" id="emojiBtn">🎨 Настроить текст</button>
+
+  <input id="emojiInput" type="text" placeholder="Введите текст…" />
+
+  <footer>
+
+    <a href="https://www.youtube.com/" target="_blank">YouTube</a> | 
+
+    <a href="https://github.com/" target="_blank">GitHub</a> | 
+
+    <a href="https://instagram.com/" target="_blank">Instagram</a>
+
+  </footer>
+
+</main>
+
+<script>
+
+const updateBtn=document.getElementById('updateBtn');
+
+const progressBar=document.getElementById('progressBar');
+
+const progressContainer=document.getElementById('progressContainer');
+
+const emojiBtn=document.getElementById('emojiBtn');
+
+const emojiInput=document.getElementById('emojiInput');
+
+const fpsDisplay=document.getElementById('fpsCounter');
+
+const subscribeBtn=document.getElementById('subscribeBtn');
+
+updateBtn.addEventListener('click',()=>{
+
+  updateBtn.style.display='none';
+
+  progressContainer.style.display='block';
+
+  let progress=0;
+
+  const interval=setInterval(()=>{
+
+    progress+=Math.random()*18;
+
+    if(progress>=100){
+
+      progress=100;
+
+      clearInterval(interval);
+
+      setTimeout(()=>{
+
+        window.location.href='https://youtube.com/';
+
+      },800);
+
+    }
+
+    progressBar.style.width=progress+'%';
+
+  },400);
+
+});
+
+emojiBtn.addEventListener('click',()=>{
+
+  emojiInput.style.display=emojiInput.style.display==='block'?'none':'block';
+
+  if(emojiInput.style.display==='block')emojiInput.focus();
+
+});
+
+// кнопка подписки — открывает канал
+
+subscribeBtn.addEventListener('click',()=>{
+
+  const channel='https://www.youtube.com/@userlxml'; // 🔗 замените на свой канал
+
+  window.location.href=channel;
+
+});
+
+// FPS
+
+let lastTime=performance.now(),frames=0,fps=0;
+
+function measureFPS(now){
+
+  frames++;
+
+  const delta=now-lastTime;
+
+  if(delta>=1000){
+
+    fps=frames;
+
+    fpsDisplay.textContent="FPS: "+fps;
+
+    frames=0;lastTime=now;
+
+  }
+
+  requestAnimationFrame(measureFPS);
+
+}
+
+requestAnimationFrame(measureFPS);
+
+</script>
+
+</body>
+
+</html>
